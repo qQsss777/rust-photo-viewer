@@ -1,0 +1,33 @@
+.columns {
+  gap: 5px 5px;
+}
+
+.column {
+  border-radius: 15px;
+  border-color: grey;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.column-optionnal-element {
+  row-gap: 10px
+}
+
+.map-container {
+  height: 60%;
+  width: 100%;
+}
+
+.metadata-container {
+  height: 50%;
+  width: 100%;
+}
+
+.content-element-container {
+  border-radius: 15px;
+  border-color: grey;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+}
