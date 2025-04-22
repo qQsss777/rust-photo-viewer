@@ -2,7 +2,7 @@
 name = "rust-photo-viewer"
 version = "0.1.0"
 description = "A Tauri App"
-authors = ["you"]
+authors = ["Marc Lemoigne"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -22,4 +22,9 @@ tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-
+tauri-plugin-dialog = "2"
+tauri-plugin-log = "2"
+log = "0.4"
+image = "0.25.6"
+base64 = "0.21"
+kamadak-exif = "0.6.1"

@@ -1,3 +1,6 @@
+.main-content{
+  height: calc(100% - 50px);
+}
 .columns {
   gap: 5px 5px;
 }
@@ -10,24 +13,16 @@
   box-sizing: border-box;
 }
 
-.column-optionnal-element {
-  row-gap: 10px
+.root-photo{
+  height: 100%;
 }
 
-.map-container {
-  height: 60%;
+.photo-container{
+  height: 100%;
   width: 100%;
+  overflow: auto;
 }
 
-.metadata-container {
-  height: 50%;
-  width: 100%;
-}
-
-.content-element-container {
-  border-radius: 15px;
-  border-color: grey;
-  border-width: 1px;
-  border-style: solid;
-  box-sizing: border-box;
+.no-data{
+  text-align: center;
 }

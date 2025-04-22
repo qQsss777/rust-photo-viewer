@@ -1,24 +1,32 @@
-import { useState } from "preact/hooks";
-import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
-import MapView from "./components/MapView/MapView";
-import Header from "./components/Header/Header";
-import Metadata from "./components/Metatada/Metadata";
+import { open } from "@tauri-apps/plugin-dialog";
 import MainContent from "./components/MainContent/MainContent";
+import ButtonsSection from "./components/ButtonsSection/ButtonsSection";
+import { useState } from "preact/hooks";
+import { usePhoto } from "./hooks/usePhoto";
+import "./App.css";
+import { warn } from "@tauri-apps/plugin-log";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+  const [path, setPath] = useState("");
+  const { status, rawData } = usePhoto(path);
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
+  /**
+   * Get photo callback
+   */
+  async function loadPhoto() {
+    const file = await open({
+      multiple: false,
+      directory: false,
+    });
+    if (file) {
+      setPath(file);
+    }
   }
 
   return (
-    <div className="hero is-flex-direction-column is-fullheight is-justify-content-flex-start">
-      <Header />
-      <MainContent />
+    <div className="app-root hero is-flex-direction-column is-fullheight is-justify-content-flex-start">
+      <ButtonsSection onLoadPhoto={loadPhoto} />
+      <MainContent rawData={rawData} status={status} />
     </div>
   );
 }

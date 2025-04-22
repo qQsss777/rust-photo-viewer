@@ -2,15 +2,24 @@ import * as L from "leaflet";
 import { useEffect } from "preact/hooks";
 import "./MapView.css";
 
-function MapView() {
+interface IMapViewProps {
+  coordinates: [number, number, number];
+}
+function MapView(props: IMapViewProps) {
   useEffect(() => {
-    const map = L.map("map").setView([51.505, -0.09], 13);
+    const center = new L.LatLng(props.coordinates[1], props.coordinates[0]);
+    const map = L.map("map").setView(center, 15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
-  }, []);
-  return <div id="map" className="map-view"></div>;
+    L.marker(center).addTo(map);
+  }, [props.coordinates]);
+  if (props.coordinates) {
+    return <div id="map" className="map-view"></div>;
+  } else {
+    return <div>Pas de coordonnées GPS</div>;
+  }
 }
 
 export default MapView;
