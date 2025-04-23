@@ -4,11 +4,10 @@ import ButtonsSection from "./components/ButtonsSection/ButtonsSection";
 import { useState } from "preact/hooks";
 import { usePhoto } from "./hooks/usePhoto";
 import "./App.css";
-import { warn } from "@tauri-apps/plugin-log";
 
 function App() {
   const [path, setPath] = useState("");
-  const { status, rawData, resetData } = usePhoto(path);
+  const { rawData, resetData } = usePhoto(path);
   /**
    * Get photo callback
    */
@@ -31,7 +30,7 @@ function App() {
   return (
     <div className="app-root hero is-flex-direction-column is-fullheight is-justify-content-flex-start">
       <ButtonsSection onLoadPhoto={loadPhoto} />
-      <MainContent rawData={rawData} status={status} />
+      <MainContent rawData={rawData} status={rawData.status} />
     </div>
   );
 }
