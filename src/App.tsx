@@ -8,8 +8,7 @@ import { warn } from "@tauri-apps/plugin-log";
 
 function App() {
   const [path, setPath] = useState("");
-  const { status, rawData } = usePhoto(path);
-
+  const { status, rawData, resetData } = usePhoto(path);
   /**
    * Get photo callback
    */
@@ -17,12 +16,18 @@ function App() {
     const file = await open({
       multiple: false,
       directory: false,
+      filters: [
+        {
+          name: "Image",
+          extensions: ["jpg", "jpeg", "png"],
+        },
+      ],
     });
     if (file) {
+      resetData();
       setPath(file);
     }
   }
-
   return (
     <div className="app-root hero is-flex-direction-column is-fullheight is-justify-content-flex-start">
       <ButtonsSection onLoadPhoto={loadPhoto} />

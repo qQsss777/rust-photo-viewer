@@ -12,11 +12,15 @@ export const usePhoto = (path: string) => {
   const [status, setStatus] = useState<TStatus>("no-data");
   const [rawData, setRawData] = useState<IPhotoData>(initialState);
 
-  useEffect(() => {
-    setRawData(initialState);
+  const resetData = () => {
     setStatus("no-data");
+    setRawData(initialState);
+  };
+
+  useEffect(() => {
     if (!path) {
       setStatus("no-data");
+      setRawData(initialState);
     } else {
       if (path) {
         setStatus("in-progress");
@@ -34,5 +38,5 @@ export const usePhoto = (path: string) => {
       }
     }
   }, [path]);
-  return { status, rawData };
+  return { status, rawData, resetData };
 };
