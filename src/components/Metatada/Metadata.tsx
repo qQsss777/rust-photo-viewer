@@ -6,6 +6,9 @@ interface IMetatadaProps {
 }
 
 function Metadata(props: IMetatadaProps) {
+  if (!props.data || Object.keys(props.data).length === 0) {
+    return <div>Pas de métadonnée.</div>;
+  }
   return (
     <div className="is-flex is-flex-direction-column is-flex-grow-1 column-optionnal-element">
       <div className="map-container">

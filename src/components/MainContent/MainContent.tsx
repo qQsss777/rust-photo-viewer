@@ -1,5 +1,6 @@
 import { TStatus } from "../../hooks/usePhoto";
 import Metadata from "../Metatada/Metadata";
+import Photo from "../Photo/Photo";
 import "./MainContent.css";
 
 export interface IPhotoData {
@@ -31,9 +32,7 @@ function MainContent(props: IMainInterfaceProps) {
           {currentMessage ? (
             <div>{currentMessage}</div>
           ) : (
-            <div className="photo-container">
-              <img src={image} />
-            </div>
+            <Photo image={image} />
           )}
         </div>
         <div class="column is-flex is-flex-direction-column is-one-third is-flex-grow-1 is-align-content-stretch">
