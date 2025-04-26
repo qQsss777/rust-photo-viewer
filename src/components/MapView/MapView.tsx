@@ -1,12 +1,14 @@
 import * as L from "leaflet";
 import { useEffect } from "preact/hooks";
 import "./MapView.css";
+import { warn } from "@tauri-apps/plugin-log";
 
 interface IMapViewProps {
   coordinates: [number, number, number];
 }
 function MapView(props: IMapViewProps) {
   useEffect(() => {
+    warn(JSON.stringify(props.coordinates));
     const center = new L.LatLng(props.coordinates[1], props.coordinates[0]);
     const map = L.map("map").setView(center, 15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {

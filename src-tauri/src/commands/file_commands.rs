@@ -105,9 +105,9 @@ fn get_coordinates(metatada: &str) -> Result<String, String> {
     if let Some(_has_latitude) = data.get("GPSLatitudeRef") {
         let mut lon = String::from("");
         let mut lat = String::from("");
-        let latitude_ref = data.get("GPSLongitudeRef").unwrap().as_str().unwrap();
+        let latitude_ref = data.get("GPSLatitudeRef").unwrap().as_str().unwrap();
         let latitude_value = data.get("GPSLatitude").unwrap().as_str().unwrap();
-        let longitude_ref = data.get("GPSLatitudeRef").unwrap().as_str().unwrap();
+        let longitude_ref = data.get("GPSLongitudeRef").unwrap().as_str().unwrap();
         let longitude_value = data.get("GPSLongitude").unwrap().as_str().unwrap();
         match converter::convert_dms(longitude_value, longitude_ref) {
             Ok(data) => lon = data,
